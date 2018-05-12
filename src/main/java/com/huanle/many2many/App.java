@@ -27,9 +27,6 @@ public class App{
 		}
 	}
 
-	public static SqlSessionFactory getSession() {
-		return sqlSessionFactory;
-	}
 
 	/**
 	 * @param args
@@ -46,6 +43,9 @@ public class App{
 		
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
+//			这种方式是不是用 SqlSession 实例来直接执行已映射的SQL语句：
+//			session.selectOne("com.yihaomen.mybatis.models.UserMapper.selectUserByID", 1)
+//			使用合理描述参数和SQL语句返回值的接口（比如 IUserOperation.class
 			GroupMapper groupMaper = session.getMapper(GroupMapper.class);
 			Group group = groupMaper.getGroup(1);
 			System.out.println("Group => " + group.getGroupName());
@@ -65,8 +65,10 @@ public class App{
 		userGroup.setUserId(2);
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			UserGroupMapper userGroupMaper = session
-					.getMapper(UserGroupMapper.class);
+//			这种方式是不是用 SqlSession 实例来直接执行已映射的SQL语句：
+//			session.selectOne("com.yihaomen.mybatis.models.UserMapper.selectUserByID", 1)
+//			使用合理描述参数和SQL语句返回值的接口（比如 IUserOperation.class
+			UserGroupMapper userGroupMaper = session.getMapper(UserGroupMapper.class);
 			userGroupMaper.insertUserGroup(userGroup);
 
 			session.commit();
@@ -83,6 +85,9 @@ public class App{
 			User user = new User();
 			user.setUsername("User-name-1");
 			user.setMobile("13838009988");
+//			这种方式是不是用 SqlSession 实例来直接执行已映射的SQL语句：
+//			session.selectOne("com.yihaomen.mybatis.models.UserMapper.selectUserByID", 1)
+//			使用合理描述参数和SQL语句返回值的接口（比如 IUserOperation.class
 			UserMapper userMaper = session.getMapper(UserMapper.class);
 			userMaper.insertUser(user);
 			session.commit();
@@ -98,6 +103,9 @@ public class App{
 		try {
 			Group group = new Group();
 			group.setGroupName("HappyGroup");
+//			这种方式是不是用 SqlSession 实例来直接执行已映射的SQL语句：
+//			session.selectOne("com.yihaomen.mybatis.models.UserMapper.selectUserByID", 1)
+//			使用合理描述参数和SQL语句返回值的接口（比如 IUserOperation.class）
 			GroupMapper groupMapper = session.getMapper(GroupMapper.class);
 			groupMapper.insertGroup(group);
 			session.commit();
