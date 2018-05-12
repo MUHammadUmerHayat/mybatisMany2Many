@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 这里需要注意的是 <typeAliases> 这个标签内容，它就是用于定义一个 JavaBean 类的别名-->    
+	<typeAliases>
+        <typeAlias alias="User" type="com.huanle.model.User" />
+		<typeAlias alias="UserGroup" type="com.huanle.model.UserGroup" />
+		<typeAlias alias="Group" type="com.huanle.model.Group" />
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/demoDB?useSSL=false" />
+                <property name="username" value="root" />
+                <property name="password" value="123456" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers> 
+         <mapper resource="com/huanle/mapper/User.xml" />
+		<mapper resource="com/huanle/mapper/Group.xml" />
+		<mapper resource="com/huanle/mapper/UserGroup.xml" />
+    </mappers>
+</configuration>
